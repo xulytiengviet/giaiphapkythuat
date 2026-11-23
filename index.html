@@ -3,87 +3,134 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Thư viện 100 giải pháp kỹ thuật định hướng R&D: CVNSS4.0, Base27, tam phân, TinyLLM, BilaScript, NHDL, IoT, RFID và robot. Tra cứu và xem giải thích chi tiết từng đề xuất.">
-  <meta name="theme-color" content="#102d39">
-  <meta property="og:title" content="100 Giải pháp Kỹ thuật Việt Nam">
-  <meta property="og:description" content="100 ý tưởng R&D trong 10 nhóm công nghệ, cùng bài toán, cơ chế, quy trình triển khai và phương pháp kiểm chứng.">
+  <meta name="theme-color" content="#112237">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="Thư viện 100 giải pháp kỹ thuật cho hệ sinh thái công nghệ CVNSS4.0: Base27, trit/tam phân, TinyLLM, BilaScript, NHDL, FPGA, Robot, RFID và IoT. Mỗi giải pháp có hồ sơ chi tiết, quy trình, phép thử và lưu ý sở hữu trí tuệ.">
+  <meta name="keywords" content="CVNSS4.0,100 giải pháp kỹ thuật,Base27,trit,tam phân,ternary,BilaScript,NHDL,TinyLLM,FPGA,IoT,robotics,RFID,tiếng Việt,R&D">
+  <meta name="author" content="Dự án mã nguồn mở CVNSS4.0 · xulytiengviet">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:url" content="https://xulytiengviet.github.io/giaiphapkythuat/">
+  <meta property="og:title" content="100 giải pháp kỹ thuật cho hệ sinh thái công nghệ CVNSS4.0">
+  <meta property="og:description" content="Khám phá 100 hướng nghiên cứu trong 10 nhóm công nghệ: CVNSS4.0, Base27, tam phân, TinyLLM, BilaScript, NHDL, robot, IoT, RFID và an toàn AI.">
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="100 giải pháp kỹ thuật · CVNSS4.0">
+  <link rel="canonical" href="https://xulytiengviet.github.io/giaiphapkythuat/">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css?v=3">
+  <script>
+    try { if (localStorage.getItem("gpk_theme_v3") === "dark") document.documentElement.setAttribute("data-theme", "dark"); } catch(e) {}
+  </script>
   <script defer src="data.js"></script>
-  <script defer src="app.js"></script>
-  <title>100 Giải pháp Kỹ thuật | CVNSS4.0 · Base27 · TinyLLM</title>
+  <script defer src="app.js?v=3"></script>
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"CollectionPage",
+    "inLanguage":"vi",
+    "name":"100 giải pháp kỹ thuật cho hệ sinh thái công nghệ CVNSS4.0",
+    "url":"https://xulytiengviet.github.io/giaiphapkythuat/",
+    "description":"Danh mục 100 ý tưởng nghiên cứu và phát triển kỹ thuật trong 10 nhóm của hệ sinh thái CVNSS4.0. Các ý tưởng chưa phải bằng sáng chế được cấp.",
+    "mainEntity":{"@type":"ItemList","numberOfItems":100},
+    "isAccessibleForFree":true
+  }
+  </script>
+  <title>100 giải pháp kỹ thuật cho hệ sinh thái công nghệ CVNSS4.0</title>
 </head>
 <body>
-  <a class="skip" href="#library">Đến danh mục giải pháp</a>
+  <a class="skip" href="#library">Bỏ qua điều hướng, đến thư viện giải pháp</a>
+
   <header class="header">
     <div class="shell header-inner">
-      <a class="logo" href="./" aria-label="Trang chủ 100 Giải pháp Kỹ thuật">
-        <span class="logo-icon" aria-hidden="true">⁝⁝⁝</span>
+      <a class="logo" href="./" aria-label="Trang chủ - 100 giải pháp kỹ thuật CVNSS4.0">
+        <span class="logo-icon" aria-hidden="true">▦</span>
         <span>GIẢI PHÁP <em>KỸ THUẬT</em></span>
       </a>
       <nav class="topnav" aria-label="Điều hướng chính">
-        <a class="nav-secondary" href="#library">Thư viện giải pháp</a>
-        <a class="nav-secondary" href="#about">Về dự án</a>
-        <a class="github-link" href="https://github.com/xulytiengviet/giaiphapkythuat" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">⌘</span> GitHub</a>
+        <a class="nav-secondary" href="#library">THƯ VIỆN</a>
+        <a class="nav-secondary" href="#architecture">KIẾN TRÚC</a>
+        <a class="nav-secondary" href="#methodology">PHƯƠNG PHÁP</a>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Đổi giao diện sáng hoặc tối" aria-pressed="false" title="Chuyển giao diện sáng/tối">◐</button>
+        <a class="github-link" href="https://github.com/xulytiengviet/giaiphapkythuat" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">⌘</span> <span class="github-text">GITHUB</span></a>
       </nav>
     </div>
   </header>
+
   <main>
     <section class="hero shell" aria-labelledby="heroTitle">
       <div class="hero-panel">
-        <div>
-          <div class="eyebrow">Thư viện ý tưởng công nghệ · 2027–2035</div>
-          <h1 id="heroTitle">100 giải pháp kỹ thuật.<br><strong>Một hệ sinh thái sáng tạo.</strong></h1>
-          <p>Khám phá 100 định hướng R&amp;D dành cho công nghệ tiếng Việt: CVNSS4.0, Base27, tính toán tam phân, TinyLLM, BilaScript, NHDL, Robot, IoT và RFID. Mỗi giải pháp có hồ sơ kỹ thuật rõ ràng, phương pháp kiểm chứng và những giới hạn cần lưu ý.</p>
+        <div class="hero-copy">
+          <span class="eyebrow">CVNSS4.0 / RESEARCH ARCHIVE / BASE27-TERNARY</span>
+          <h1 id="heroTitle">100 giải pháp kỹ thuật.<br><strong>Hệ sinh thái CVNSS4.0.</strong></h1>
+          <p>
+            Thư viện mở về 100 ý tưởng kỹ thuật kết nối xử lý tiếng Việt với mã ký hiệu CVNSS4.0,
+            Base27, trit/tam phân, TinyLLM, BilaScript, NHDL, robot, IoT và chipless RFID.
+            Mỗi hồ sơ trình bày bài toán, nguyên lý, quy trình triển khai, phương pháp kiểm chứng
+            và rủi ro sở hữu trí tuệ — không đánh đồng giả thuyết với sáng chế đã được cấp bằng.
+          </p>
           <div class="hero-actions">
-            <a class="btn btn-main" href="#library">Khám phá giải pháp <span aria-hidden="true">↗</span></a>
-            <a class="btn btn-ghost" href="https://github.com/xulytiengviet/giaiphapkythuat" target="_blank" rel="noopener noreferrer">Xem mã nguồn <span aria-hidden="true">↗</span></a>
+            <a class="btn btn-main" href="#library">▶ MỞ THƯ VIỆN</a>
+            <a class="btn btn-ghost" href="https://github.com/xulytiengviet/giaiphapkythuat" target="_blank" rel="noopener noreferrer">⌘ MÃ NGUỒN</a>
           </div>
+          <div class="hero-terminal-note">100 IDEAS LOADED · 10 RESEARCH FAMILIES · NO API KEY</div>
         </div>
-        <div class="diagram" aria-label="Kiến trúc định hướng từ tiếng Việt đến phần cứng">
-          <div class="diagram-top"><span>Kiến trúc nghiên cứu</span><span>R&amp;D / 100</span></div>
+
+        <div class="diagram" role="img" aria-label="Sơ đồ định hướng: tiếng Việt và Unicode, qua CVNSS4.0 Base27, trit và TinyLLM, BilaScript và NHDL, đến FPGA robot và IoT">
+          <div class="diagram-top"><span>SYSTEM PIPELINE</span><span>CVNSS4.0 › R&amp;D</span></div>
           <div class="diagram-node"><span>Tiếng Việt / Unicode</span><small>INPUT</small></div>
           <div class="diagram-arrow" aria-hidden="true">↓</div>
-          <div class="diagram-node accent"><span>CVNSS4.0 + Base27</span><small>SYMBOLIC</small></div>
+          <div class="diagram-node accent"><span>CVNSS4.0 + Base27</span><small>SYMBOLS</small></div>
           <div class="diagram-arrow" aria-hidden="true">↓</div>
-          <div class="diagram-node"><span>Trit / Ternary + TinyLLM</span><small>INTELLIGENCE</small></div>
+          <div class="diagram-node"><span>Trit / Tam phân + TinyLLM</span><small>INTELLIGENCE</small></div>
           <div class="diagram-arrow" aria-hidden="true">↓</div>
-          <div class="diagram-node"><span>BilaScript / Task IR / NHDL</span><small>COMPILER</small></div>
+          <div class="diagram-node"><span>BilaScript · Task IR · NHDL</span><small>COMPILER</small></div>
           <div class="diagram-arrow" aria-hidden="true">↓</div>
-          <div class="diagram-node"><span>FPGA · Robotics · IoT</span><small>APPLICATION</small></div>
-          <div class="diagram-note">Sơ đồ kiến trúc định hướng, chưa phải hệ thống đã được thẩm định.</div>
+          <div class="diagram-node"><span>FPGA · Robot · RFID · IoT</span><small>APPLICATION</small></div>
+          <div class="diagram-note">Kiến trúc nghiên cứu đề xuất; các thành phần cần được thử nghiệm độc lập và chứng minh bằng số liệu.</div>
         </div>
       </div>
     </section>
 
     <div class="shell">
-      <section class="stats" aria-label="Thống kê thư viện">
-        <div class="stat"><div><b id="countSolutions">100</b><p>Giải pháp nghiên cứu</p></div><span class="stat-symbol" aria-hidden="true">✦</span></div>
-        <div class="stat"><div><b id="countGroups">10</b><p>Nhóm công nghệ</p></div><span class="stat-symbol" aria-hidden="true">▦</span></div>
-        <div class="stat"><div><b id="countPriority">12</b><p>Hướng ưu tiên</p></div><span class="stat-symbol" aria-hidden="true">◈</span></div>
-        <div class="stat"><div><b>100%</b><p>Hồ sơ có phép thử gợi ý</p></div><span class="stat-symbol" aria-hidden="true">✓</span></div>
+      <section class="stats" aria-label="Thống kê danh mục">
+        <div class="stat"><div><b id="countSolutions">100</b><p>Giải pháp kỹ thuật</p></div><span class="stat-symbol" aria-hidden="true">✦</span></div>
+        <div class="stat"><div><b id="countGroups">10</b><p>Nhóm nghiên cứu</p></div><span class="stat-symbol" aria-hidden="true">▦</span></div>
+        <div class="stat"><div><b id="countPriority">12</b><p>Hướng ưu tiên</p></div><span class="stat-symbol" aria-hidden="true">★</span></div>
+        <div class="stat"><div><b>0</b><p>API key cần cấu hình</p></div><span class="stat-symbol" aria-hidden="true">⌘</span></div>
+      </section>
+
+      <section class="architecture" id="architecture" aria-labelledby="architectureTitle">
+        <div class="architecture-shell">
+          <div>
+            <h2 id="architectureTitle">Một hệ sinh thái · Nhiều lớp công nghệ.</h2>
+            <p>CVNSS4.0 và Base27 là các hướng biểu diễn ký hiệu; TinyLLM xử lý suy luận; BilaScript và NHDL kết nối biểu diễn trung gian với mã điều khiển và phần cứng. Khả năng giảm bộ nhớ, tăng hiệu năng hoặc tiết kiệm điện là giả thuyết phải đo độc lập, không suy ra từ việc dùng cơ số 27 hay ba mức trit.</p>
+          </div>
+          <span class="architecture-label">SYMBOL → MODEL → IR → DEVICE</span>
+        </div>
       </section>
 
       <section id="library" aria-labelledby="libraryTitle">
         <div class="section-head">
           <div>
-            <span class="section-kicker">Khám phá và tra cứu</span>
+            <div class="section-kicker">/LIBRARY/ 100 TECHNICAL SOLUTIONS</div>
             <h2 id="libraryTitle">Danh mục giải pháp</h2>
-            <p>Chọn một giải pháp để mở cửa sổ chi tiết: vấn đề kỹ thuật, nguyên lý hoạt động, triển khai, kiểm nghiệm, chỉ số đo và lưu ý sở hữu trí tuệ.</p>
+            <p>Tìm theo tên, mã số, công nghệ hoặc bài toán; lọc 10 nhóm; mở hồ sơ chi tiết, lưu giải pháp và xuất Markdown. Có thể chia sẻ từng mục qua liên kết <strong>#gp-001</strong> đến <strong>#gp-100</strong>.</p>
           </div>
           <span id="resultCount" class="section-count" role="status" aria-live="polite">100 / 100 giải pháp</span>
         </div>
-        <div class="filters" role="search" aria-label="Tìm kiếm và lọc danh mục">
+        <div class="filters" role="search" aria-label="Tìm kiếm và lọc giải pháp kỹ thuật">
+          <div class="filter-caption"><span>SEARCH / FILTER / SORT</span><span>ESC: ĐÓNG POPUP · /: TÌM KIẾM</span></div>
           <div class="search-row">
             <div class="search-wrap" id="searchWrap">
               <span class="search-symbol" aria-hidden="true">⌕</span>
-              <input id="search" class="search" type="search" autocomplete="off" placeholder="Tìm theo tên, từ khóa, CVNSS, FPGA, TinyLLM, RFID..." aria-label="Tìm giải pháp kỹ thuật">
-              <button id="clearSearch" class="clear-search" type="button" aria-label="Xóa nội dung tìm kiếm">×</button>
+              <input id="search" class="search" type="search" autocomplete="off" placeholder="Tìm CVNSS, Base27, trit, TinyLLM, BilaScript, RFID..." aria-label="Nhập từ khóa tìm giải pháp">
+              <button id="clearSearch" class="clear-search" type="button" aria-label="Xóa từ khóa">×</button>
             </div>
-            <select id="sortSelect" class="sort" aria-label="Sắp xếp danh sách">
-              <option value="id">Thứ tự 01–100</option>
-              <option value="priority">Ưu tiên nghiên cứu</option>
+            <select id="sortSelect" class="sort" aria-label="Sắp xếp danh mục">
+              <option value="id">Mã giải pháp 001–100</option>
+              <option value="priority">12 hướng ưu tiên</option>
               <option value="name">Tên A–Z</option>
               <option value="name-desc">Tên Z–A</option>
             </select>
@@ -92,18 +139,38 @@
           <div id="categoryTabs" class="cat-strip" role="group" aria-label="Lọc theo nhóm công nghệ"></div>
         </div>
         <div class="cards" id="cards" aria-live="polite"></div>
+        <noscript>
+          <p>Ứng dụng cần JavaScript để hiển thị 100 giải pháp từ tập dữ liệu cục bộ data.js. Vui lòng bật JavaScript trong trình duyệt.</p>
+        </noscript>
+      </section>
+
+      <section class="methodology" id="methodology" aria-labelledby="methodologyTitle">
+        <div class="methodology-panel">
+          <div>
+            <h2 id="methodologyTitle">Từ ý tưởng đến giải pháp kỹ thuật có kiểm chứng</h2>
+            <p>Mỗi hồ sơ tuân theo cấu trúc: <code>bài toán</code> → <code>cơ chế</code> → <code>nguyên mẫu</code> → <code>đối chứng</code> → <code>chỉ số đo</code> → <code>đánh giá IP</code>. Danh mục này chỉ là chương trình nghiên cứu. Muốn đăng ký sáng chế hoặc giải pháp hữu ích cần tra cứu tài liệu có trước, đánh giá tính mới, điều kiện bảo hộ và quyền sử dụng công nghệ của bên thứ ba.</p>
+          </div>
+          <aside aria-label="Tiêu chí nghiên cứu">
+            <span>[✓] TÁI LẬP THỬ NGHIỆM</span>
+            <span>[✓] AN TOÀN &amp; HIỆU NĂNG</span>
+            <span>[✓] GIẤY PHÉP DỮ LIỆU</span>
+            <span>[✓] KIỂM TRA TÍNH MỚI</span>
+          </aside>
+        </div>
       </section>
     </div>
   </main>
+
   <footer class="footer" id="about">
     <div class="shell footer-inner">
       <div>
-        <strong>100 Giải pháp Kỹ thuật Việt Nam</strong>
-        <p>Dự án mở về ý tưởng nghiên cứu CVNSS4.0 · Base27 · Ternary · TinyLLM · BilaScript · NHDL · IoT · Robotics. Thông tin trên trang là đề xuất nghiên cứu, chưa phải bằng độc quyền sáng chế, giải pháp hữu ích được cấp hoặc kết quả hiệu năng được xác minh. Việc sử dụng công nghệ bên thứ ba phải tuân thủ quyền sở hữu trí tuệ và điều khoản có hiệu lực.</p>
+        <strong>CVNSS4.0 // TECHNICAL SOLUTION ARCHIVE</strong>
+        <p>100 giải pháp kỹ thuật cho hệ sinh thái công nghệ CVNSS4.0, do dự án xulytiengviet tổng hợp thành các định hướng R&amp;D. Đây không phải danh mục 100 bằng sáng chế đã được cấp, cũng không phải khẳng định các kết quả hiệu năng. Giao diện hoạt động tĩnh; thông tin yêu thích và chế độ hiển thị được lưu trên trình duyệt của bạn.</p>
       </div>
-      <a href="https://github.com/xulytiengviet/giaiphapkythuat" target="_blank" rel="noopener noreferrer">Mã nguồn và đóng góp ↗</a>
+      <a href="https://github.com/xulytiengviet/giaiphapkythuat" target="_blank" rel="noopener noreferrer">ĐÓNG GÓP TRÊN GITHUB ↗</a>
     </div>
   </footer>
+
   <dialog id="detailDialog" aria-labelledby="modalTitle" aria-modal="true">
     <div id="modalContent"></div>
   </dialog>
