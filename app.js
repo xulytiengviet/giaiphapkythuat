@@ -16,6 +16,9 @@ var starFilter=document.getElementById("starFilter");
 var sortSelect=document.getElementById("sortSelect");
 var toast=document.getElementById("toast");
 var lastTrigger=null;
+var SITE_TITLE="100 giải pháp kỹ thuật cho hệ sinh thái công nghệ CVNSS4.0";
+var themeToggle=document.getElementById("themeToggle");
+
 var favorites=new Set();
 try {favorites=new Set(JSON.parse(localStorage.getItem("gpk_favorites_v1")||"[]").map(Number))}catch(e){favorites=new Set()}
 function safe(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
@@ -27,7 +30,8 @@ function notify(s){toast.textContent=s;toast.classList.add("show");clearTimeout(
 function persist(){try{localStorage.setItem("gpk_favorites_v1",JSON.stringify(Array.from(favorites)))}catch(e){}}
 function renderTabs(){
 var all='<button type="button" class="cat-tab'+(state.category===-1?' active':'')+'" data-category="-1">Tất cả <span>'+items.length+'</span></button>';
-tabs.innerHTML=all+groups.map(function(g,i){return '<button type="button" class="cat-tab'+(state.category===i?' active':'')+'" data-category="'+i+'">'+safe(g.name)+' <span>'+items.filter(function(s){return s.category===i}).length+'</span></button>'}).join("");
+tabs.innerHTML=all+groups.map(function(g,i){return '<button type="button" class="cat-tab'+(state.category===i?' active':'')+'" aria-pressed="'+(state.category===i)+'" data-category="'+i+'">'+safe(g.name)+' <span>'+items.filter(function(s){return s.category===i}).length+'</span></button>'}).join("");
+var allButton=tabs.querySelector('[data-category="-1"]');if(allButton)allButton.setAttribute("aria-pressed",String(state.category===-1));
 }
 function matches(s){
 if(state.category>=0&&s.category!==state.category)return false;
@@ -91,12 +95,13 @@ var s=itemById(id);if(!s)return;
 if(!dialog.open)lastTrigger=document.activeElement;
 renderModal(s);
 if(!dialog.open)dialog.showModal();
-document.title=padded(s.id)+" · "+s.name+" | 100 Giải pháp Kỹ thuật";
+var modalClose=dialog.querySelector("[data-close]");if(modalClose)modalClose.focus({preventScroll:true});
+document.title=padded(s.id)+" · "+s.name+" | "+SITE_TITLE;
 if(changeHash&&location.hash!=="#"+s.slug)history.pushState(null,"","#"+s.slug);
 }
 function closeDialog(){
 if(dialog.open)dialog.close();
-document.title="100 Giải pháp Kỹ thuật | CVNSS4.0 · Base27 · TinyLLM";
+document.title=SITE_TITLE;
 if(/^#gp-\d{3}$/.test(location.hash))history.replaceState(null,"",location.pathname+location.search);
 if(lastTrigger&&typeof lastTrigger.focus==="function")lastTrigger.focus();
 }
@@ -131,7 +136,7 @@ if(target.hasAttribute("data-reset")){reset();return}
 if(target.hasAttribute("data-close")){closeDialog();return}
 if(target.hasAttribute("data-fav")){
 var id=Number(target.getAttribute("data-fav"));if(favorites.has(id))favorites.delete(id);else favorites.add(id);persist();render();
-if(dialog.open){var selected=(location.hash.match(/^#gp-(\d{3})$/)||[])[1];if(selected)renderModal(itemById(Number(selected)))}return;
+if(dialog.open){var selected=(location.hash.match(/^#gp-(\d{3})$/)||[])[1];if(selected){renderModal(itemById(Number(selected)));var favBtn=dialog.querySelector('[data-fav="'+Number(selected)+'"]');if(favBtn)favBtn.focus({preventScroll:true})}}return;
 }
 if(target.hasAttribute("data-prev")){var previous=Number(target.getAttribute("data-prev"));if(itemById(previous))openSolution(previous,true);return}
 if(target.hasAttribute("data-next")){var next=Number(target.getAttribute("data-next"));if(itemById(next))openSolution(next,true);return}
@@ -143,11 +148,35 @@ document.getElementById("clearSearch").addEventListener("click",function(){searc
 starFilter.addEventListener("click",function(){state.starOnly=!state.starOnly;render()});
 sortSelect.addEventListener("change",function(){state.sort=sortSelect.value;render()});
 dialog.addEventListener("click",function(e){if(e.target===dialog)closeDialog()});
-dialog.addEventListener("close",function(){document.title="100 Giải pháp Kỹ thuật | CVNSS4.0 · Base27 · TinyLLM";if(/^#gp-\d{3}$/.test(location.hash))history.replaceState(null,"",location.pathname+location.search)});
+dialog.addEventListener("cancel",function(e){e.preventDefault();closeDialog()});
+dialog.addEventListener("close",function(){document.title=SITE_TITLE;if(/^#gp-\d{3}$/.test(location.hash))history.replaceState(null,"",location.pathname+location.search)});
 window.addEventListener("hashchange",function(){var m=location.hash.match(/^#gp-(\d{3})$/);if(m)openSolution(Number(m[1]),false);else if(dialog.open)dialog.close()});
 document.getElementById("countSolutions").textContent=items.length;
 document.getElementById("countGroups").textContent=groups.length;
 document.getElementById("countPriority").textContent=priority.size;
+function syncTheme(){
+  if(!themeToggle)return;
+  var dark=document.documentElement.getAttribute("data-theme")==="dark";
+  themeToggle.setAttribute("aria-pressed",String(dark));
+  themeToggle.textContent=dark?"☼":"◐";
+  themeToggle.title=dark?"Chuyển sang giao diện sáng":"Chuyển sang giao diện tối";
+}
+if(themeToggle){
+  themeToggle.addEventListener("click",function(){
+    var dark=document.documentElement.getAttribute("data-theme")==="dark";
+    if(dark)document.documentElement.removeAttribute("data-theme");
+    else document.documentElement.setAttribute("data-theme","dark");
+    try{localStorage.setItem("gpk_theme_v3",dark?"light":"dark")}catch(e){}
+    syncTheme();
+  });
+  syncTheme();
+}
+document.addEventListener("keydown",function(e){
+  if(e.key!=="/"||e.ctrlKey||e.altKey||e.metaKey||dialog.open)return;
+  var t=e.target;var tag=t&&t.tagName?t.tagName.toLowerCase():"";
+  if(tag==="input"||tag==="textarea"||tag==="select"||(t&&t.isContentEditable))return;
+  e.preventDefault();search.focus();
+});
 render();
 var initial=location.hash.match(/^#gp-(\d{3})$/);if(initial)openSolution(Number(initial[1]),false);
 })();
